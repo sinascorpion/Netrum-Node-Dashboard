@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Netrum Node Dashboard - Orange/Black Theme */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Light Theme - White and Orange */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 15% 93%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 30 10% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 10%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 30 15% 88%;
+    --input: 30 15% 90%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.75rem;
+
+    /* Custom Netrum colors */
+    --netrum-orange: 24 95% 53%;
+    --netrum-dark: 0 0% 8%;
+    --netrum-glow: 24 95% 53%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(24 95% 53%), hsl(30 95% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(24 95% 53%), hsl(18 95% 45%));
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(24 95% 53% / 0.2);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.08);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 15% 94%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 30 15% 88%;
+    --sidebar-ring: 24 95% 53%;
+  }
+
+  .dark {
+    /* Dark Theme - Black and Orange */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 5%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 5%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 5%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 14%;
+    --ring: 24 95% 53%;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 24 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), inset 0 1px 0 hsl(var(--primary) / 0.1);
+  }
+
+  .stat-card {
+    @apply glass-card p-6 relative overflow-hidden;
+    background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%);
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
+  }
+
+  .input-search {
+    @apply bg-muted border-border text-foreground placeholder:text-muted-foreground;
+    @apply focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply transition-all duration-200 font-semibold;
+    box-shadow: 0 4px 14px hsl(var(--primary) / 0.25);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px hsl(var(--primary) / 0.35);
+    transform: translateY(-1px);
+  }
+
+  .table-row {
+    @apply border-b border-border/50 hover:bg-muted/50 transition-colors;
+  }
+
+  .status-online {
+    @apply bg-success/20 text-success border border-success/30;
+  }
+
+  .status-offline {
+    @apply bg-destructive/20 text-destructive border border-destructive/30;
+  }
+
+  .status-checking {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(24 95% 45%));
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
